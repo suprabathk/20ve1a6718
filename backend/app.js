@@ -1,8 +1,11 @@
 const express = require("express");
+const cors = require('cors')
 const { APIAuth, getTrains, filterTrains, sortTrains, getTrain } = require("./utils");
+
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get("/trains", async (req, res) => {
     const { access_token } = await APIAuth();
