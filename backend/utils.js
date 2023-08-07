@@ -26,6 +26,18 @@ const getTrains = async (authToken) => {
     return JSONData;
 }
 
+const getTrain = async (authToken, trainID) => {
+    const response = await fetch(`http://20.244.56.144/train/trains/${trainID}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer " + authToken
+        }
+    })
+    const JSONData = await response.json();
+    return JSONData;
+}
+
 const filterTrains = (trains) => {
     const now = new Date();
     return trains.filter(train => {
@@ -43,4 +55,4 @@ const sortTrains = (trains) => {
     });
 }
 
-module.exports = { APIAuth, getTrains, filterTrains, sortTrains }
+module.exports = { APIAuth, getTrains, filterTrains, sortTrains, getTrain }
