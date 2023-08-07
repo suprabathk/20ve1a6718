@@ -14,5 +14,16 @@ const APIAuth = async () => {
     return JSONData;
 }
 
+const getTrains = async (authToken) => {
+    const response = await fetch("http://20.244.56.144/train/trains", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer " + authToken
+        }
+    })
+    const JSONData = await response.json();
+    return JSONData;
+}
 
-module.exports = { APIAuth }
+module.exports = { APIAuth, getTrains }
