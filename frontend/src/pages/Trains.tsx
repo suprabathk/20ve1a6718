@@ -1,28 +1,10 @@
 import { useEffect, useState } from "react"
+import { Train } from "../types";
 
 const fetchTrains = async () => {
     return await fetch("http://localhost:8080/trains", {
         method: "GET"
     })
-}
-
-type Train = {
-    trainName: string,
-    trainNumber: number,
-    departureTime: {
-        Hours: number,
-        Minutes: number,
-        Seconds: number
-    },
-    seatsAvailable: {
-        sleeper: number,
-        AC: number
-    }
-    price: {
-        sleeper: number,
-        AC: number
-    },
-    delayedBy: number
 }
 
 export default function Trains() {
