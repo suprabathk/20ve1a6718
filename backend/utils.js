@@ -26,4 +26,21 @@ const getTrains = async (authToken) => {
     return JSONData;
 }
 
-module.exports = { APIAuth, getTrains }
+const filterTrains = (trains) => {
+    const now = new Date();
+    return trains.filter(train => {
+        const hoursDifference = train.departureTime.Hours - now.getHours();
+        const minutesDifference = train.departureTime.Minutes - now.getMinutes();
+        return hoursDifference < 12 && (hoursDifference === 0 ? minutesDifference > 30 : true);
+    });
+}
+
+const sortTrains = (trains) => {
+    return trains.sort((train1, train2) => train1.price.sleeper - train2.price.sleeper).sort((train1, train2) => train2.seatsAvailable.sleeper - train1.seatsAvailable.sleeper).sort((train1, train2) => {
+        const train1Departure = new Date(0, 0, 0, train1.departureTime.Hours, train1.departureTime.Minutes + train1.delayedBy, train1.departureTime.Seconds, 0);
+        const train2Departure = new Date(0, 0, 0, train2.departureTime.Hours, train2.departureTime.Minutes + train2.delayedBy, train2.departureTime.Seconds, 0);
+        return train2Departure - train1Departure;
+    });
+}
+
+module.exports = { APIAuth, getTrains, filterTrains, sortTrains }

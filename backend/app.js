@@ -1,5 +1,5 @@
 const express = require("express");
-const { APIAuth, getTrains } = require("./utils");
+const { APIAuth, getTrains, filterTrains, sortTrains, getTrain } = require("./utils");
 
 const app = express();
 app.use(express.json());
@@ -7,7 +7,7 @@ app.use(express.json());
 app.get("/trains", async (req, res) => {
     const { access_token } = await APIAuth();
     const trains = await getTrains(access_token);
-    res.send(trains);
+    res.send(sortTrains(filterTrains(trains)));
 });
 
 app.listen(process.env.PORT || 8080, () => {

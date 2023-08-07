@@ -1,4 +1,5 @@
 node_modules
+frontend
 *.bak
 /.pnp
 .pnp.js
