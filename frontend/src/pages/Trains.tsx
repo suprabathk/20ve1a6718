@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Train } from "../types";
+import { Link } from "react-router-dom";
 
 const fetchTrains = async () => {
     return await fetch("http://localhost:8080/trains", {
@@ -26,7 +27,7 @@ export default function Trains() {
                 {
                     trains.map((train, id) => {
                         return (
-                            <div key={id} className="bg-gray-200 my-2 p-2 rounded-md flex flex-col pr-6">
+                            <Link to={`/${train.trainNumber}`} key={id} className="bg-gray-200 my-2 p-2 rounded-md flex flex-col pr-6">
                                 <div className="flex items-center gap-4 justify-between">
                                     <p className="text-xl font-bold">{train.trainName}</p>
                                     <p>Train number: <span className="font-bold">{train.trainNumber}</span></p>
@@ -55,12 +56,11 @@ export default function Trains() {
                                     </div>
                                 </div>
 
-                            </div>
+                            </Link>
                         )
                     })
                 }
             </div>
-
         </div>
     )
 }

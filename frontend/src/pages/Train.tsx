@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Train } from "../types";
+import { useParams } from "react-router";
 
 const fetchTrain = async (id: number) => {
     return await fetch(`http://localhost:8080/train/${id}`, {
@@ -7,16 +8,17 @@ const fetchTrain = async (id: number) => {
     })
 }
 
-export default function Trains({ id }: { id: number }) {
+export default function Trains() {
 
     const [train, setTrain] = useState<Train | undefined>(undefined);
-
+    const { id } = useParams();
+    const idF = parseInt(id ? id : "-1");
     useEffect(() => {
-        fetchTrain(id).then(
+        fetchTrain(idF).then(
             data => data.json().then(finalData => setTrain(finalData)
             )
         )
-    }, [id]);
+    }, [idF]);
 
     return (
         <div className="p-6">
