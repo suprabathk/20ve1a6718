@@ -22,7 +22,7 @@ export default function Trains() {
     return (
         <div className="p-6">
             <h1 className="text-5xl font-extrabold mb-2 text-center">Indian Railway Service</h1>
-            <div className="px-52">
+            <div className="md:px-36 lg:px-52">
                 <h3 className="text-3xl font-extrabold mt-6">Trains</h3>
                 {
                     trains.map((train, id) => {

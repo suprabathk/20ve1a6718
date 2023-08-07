@@ -24,7 +24,7 @@ export default function Trains() {
         <div className="p-6">
             <h1 className="text-5xl font-extrabold mb-2 text-center">Indian Railway Service</h1>
             {train &&
-                <div className="px-52">
+                <div className="md:px-36 lg:px-52">
                     <div>
                         <h3 className="text-4xl font-extrabold mt-6">{train.trainName}</h3>
                         <p className="text-2xl font-semibold mt-2">Train number: {train.trainNumber}</p>
